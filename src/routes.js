@@ -7,12 +7,15 @@ import SessionsController from "./app/controllers/SessionsController.js";
 
 import UserController from "./app/controllers/UserController.js";
 
+import authMiddleware from "./app/middlewares/auth.js"
 
 const upload = multer(multerConfig)
 
 const routes = new Router();
 
 routes.post("/users", UserController.store);
+
+routes.use(authMiddleware) // todas as rotas abaixo irã passar pela verificação
 
 routes.post("/sessions", SessionsController.store);
 

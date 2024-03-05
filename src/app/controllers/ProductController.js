@@ -31,7 +31,7 @@ class ProductController {
     async index(req, res){
         const products = await Product.findAll()
 
-        return res.json({products})
+        return res.json(products)
     }
 }
 
