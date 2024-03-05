@@ -1,5 +1,5 @@
 import * as Yup from "yup"
-import Product from "../models/Product"
+import Product from "../models/Product.js"
 
 class ProductController {
     async store(req, res) {
@@ -27,6 +27,15 @@ class ProductController {
         })
         return res.json(product)
     }
+
+    async index(req, res){
+        const products = await Product.findAll()
+
+        return res.json({products})
+    }
 }
+
+
+
 
 export default new ProductController();
