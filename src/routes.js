@@ -15,9 +15,9 @@ const routes = new Router();
 
 routes.post("/users", UserController.store);
 
-routes.use(authMiddleware) // todas as rotas abaixo irã passar pela verificação
-
 routes.post("/sessions", SessionsController.store);
+
+routes.use(authMiddleware) // todas as rotas abaixo irã passar pela verificação
 
 routes.post("/product", upload.single("file"), ProductController.store);
 routes.get("/product", ProductController.index);
