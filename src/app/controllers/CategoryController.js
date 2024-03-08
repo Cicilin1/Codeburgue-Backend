@@ -16,14 +16,23 @@ class CategoryController {
 
         const { name } = req.body
 
-        const category = await Category.create({ name })
-        return res.json(category)
+        const categoryExists = await Category.findOne({
+            where: {
+                name,
+            },
+        })
+
+        if (categoryExists) {
+            return res.status(400).json({ error: "Category already existis" })
+        }
+
+        const { id } = await Category.create({ name })
     }
 
     async index(req, res) {
         const category = await Category.findAll()
 
-        return res.json(category)
+        return res.json({name, id})
     }
 }
 
